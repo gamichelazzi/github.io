@@ -3,255 +3,408 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Il tuo Nome — Presentazione</title>
-  <meta name="description" content="Pagina di presentazione personale minimal: chi sono, progetti e contatti." />
+  <meta name="description" content="Portfolio accademico – Nome Cognome" />
+  <title>Nome Cognome · Academic Portfolio</title>
+
+  <!-- Font: pulito e leggibile (fallback safe) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg:#ffffff;
-      --text:#0f172a;     /* slate-900 */
-      --muted:#475569;    /* slate-600 */
-      --line:#e2e8f0;     /* slate-200 */
-      --accent:#2563eb;   /* blue-600 */
-      --max: 920px;
-      --radius: 14px;
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #0f172a;        /* slate-900 */
+      --muted: #64748b;       /* slate-500 */
+      --line: #e5e7eb;        /* gray-200 */
+      --accent: #2563eb;      /* blue-600 */
+      --accent-weak: rgba(37, 99, 235, .10);
+      --shadow: 0 10px 30px rgba(15, 23, 42, .06);
+      --radius: 16px;
+      --maxw: 980px;
     }
-    *{box-sizing:border-box}
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
     body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      color:var(--text);
-      background:var(--bg);
-      line-height:1.6;
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, #ffffff 0%, var(--bg) 55%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.55;
     }
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .nav{
-      position:sticky; top:0; z-index:10;
-      background:rgba(255,255,255,.92);
-      backdrop-filter: blur(6px);
-      border-bottom:1px solid var(--line);
+
+    /* layout */
+    .page{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 40px 20px 64px;
     }
-    .nav-inner{
-      height:64px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
+
+    .topbar{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
     }
+
     .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:700; color:var(--text);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
     }
-    .dot{width:10px;height:10px;border-radius:999px;background:var(--accent)}
-    .links{display:flex; gap:14px; align-items:center}
-    .links a{color:var(--muted); padding:8px 10px; border-radius:10px}
-    .links a:hover{background:#f8fafc; text-decoration:none; color:var(--text)}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px;
-      border-radius:12px;
-      border:1px solid var(--line);
-      background:#fff;
-      color:var(--text);
-      cursor:pointer;
-      white-space:nowrap;
+
+    .avatar{
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-weak), rgba(100,116,139,.10));
+      border: 1px solid var(--line);
+      display: grid;
+      place-items: center;
+      font-weight: 600;
+      color: var(--accent);
     }
-    .btn:hover{background:#f8fafc; text-decoration:none}
-    .btn.primary{
-      border-color:transparent;
-      background:var(--accent);
-      color:#fff;
+
+    .nav{
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
     }
-    .btn.primary:hover{filter:brightness(.96)}
-    header.hero{
-      padding:56px 0 26px;
+
+    .nav__link{
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
     }
-    h1{
-      font-size: clamp(30px, 4vw, 44px);
-      line-height:1.15;
-      margin:0 0 10px;
-      letter-spacing:-.4px;
+    .nav__link:hover{
+      background: rgba(255,255,255,.65);
+      color: var(--text);
+      border: 1px solid var(--line);
+      padding: 7px 9px;
     }
-    .lead{color:var(--muted); max-width:65ch; margin:0 0 18px}
-    .meta{display:flex; gap:10px; flex-wrap:wrap; color:var(--muted); font-size:14px}
-    .pill{
-      border:1px solid var(--line);
-      padding:6px 10px;
-      border-radius:999px;
-      background:#fff;
+
+    /* hero */
+    .hero{
+      background: rgba(255,255,255,.7);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      display: grid;
+      gap: 14px;
     }
-    .row{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
-    section{padding:34px 0}
-    .section-title{
-      display:flex; align-items:baseline; justify-content:space-between;
-      gap:16px; flex-wrap:wrap;
-      margin-bottom:14px;
+
+    .hero__title{
+      font-size: clamp(28px, 4vw, 40px);
+      letter-spacing: -0.02em;
+      margin: 0;
     }
-    h2{margin:0; font-size:18px}
-    .hint{margin:0; color:var(--muted); max-width:70ch}
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
+
+    .hero__subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 72ch;
     }
-    .card{
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:14px;
-      background:#fff;
+
+    .hero__chips{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
     }
-    .card h3{margin:0 0 6px; font-size:15px}
-    .card p{margin:0; color:var(--muted)}
-    .proj-head{
-      display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;
-      align-items:baseline;
-    }
-    .chips{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+
     .chip{
-      font-size:12px;
-      color:var(--muted);
-      border:1px solid var(--line);
-      padding:5px 9px;
-      border-radius:999px;
-      background:#fff;
+      font-size: 13px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
     }
-    footer{
-      border-top:1px solid var(--line);
-      padding:24px 0 44px;
-      color:var(--muted);
-      font-size:14px;
+
+    .actions{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
     }
-    @media (max-width: 820px){
-      .links{display:none}
-      .grid{grid-template-columns:1fr}
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
     }
-    html{scroll-behavior:smooth}
+    .btn:hover{
+      border-color: rgba(37, 99, 235, .25);
+      box-shadow: 0 8px 20px rgba(37,99,235,.08);
+    }
+
+    .btn--primary{
+      background: var(--accent);
+      border-color: rgba(37,99,235,.6);
+      color: #fff;
+    }
+    .btn--primary:hover{
+      box-shadow: 0 10px 22px rgba(37,99,235,.20);
+    }
+
+    /* sections */
+    .section{
+      margin-top: 26px;
+      padding-top: 18px;
+    }
+
+    .section__header{
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .section__title{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+    }
+
+    .section__hint{
+      margin: 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    @media (min-width: 880px){
+      .grid--2{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .card{
+      background: rgba(255,255,255,.85);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, .05);
+    }
+
+    .card__title{
+      margin: 0 0 6px 0;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .card__meta{
+      margin: 0 0 10px 0;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .card__text{
+      margin: 0;
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    .list{
+      margin: 0;
+      padding-left: 18px;
+      color: var(--text);
+      font-size: 14px;
+    }
+    .list li{ margin: 6px 0; }
+
+    .link{
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(37,99,235,.25);
+    }
+    .link:hover{
+      border-bottom-color: rgba(37,99,235,.9);
+    }
+
+    .footer{
+      margin-top: 42px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* accessibility */
+    :focus-visible{
+      outline: 3px solid rgba(37,99,235,.35);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
   </style>
 </head>
-<body>
 
-  <div class="nav">
-    <div class="container">
-      <div class="nav-inner">
-        <a class="brand" href="#top"><span class="dot"></span> <!-- TODO -->Il tuo Nome</a>
-        <nav class="links">
-          <a href="#about">Chi sono</a>
-          <a href="#projects">Progetti</a>
-          <a href="#contact">Contatti</a>
-        </nav>
-        <a class="btn primary" href="#contact">Contattami</a>
-      </div>
-    </div>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#">
+        <div class="avatar" aria-hidden="true">NC</div>
+        <div>
+          <div style="font-weight:600; font-size:14px;">Nome Cognome</div>
+          <div style="font-size:13px; color: var(--muted);">Researcher · University / Lab</div>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navigazione">
+        <a class="nav__link" href="#about">About</a>
+        <a class="nav__link" href="#publications">Pubblicazioni</a>
+        <a class="nav__link" href="#projects">Progetti</a>
+        <a class="nav__link" href="#teaching">Didattica</a>
+        <a class="nav__link" href="#contact">Contatti</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="about">
+        <h1 class="hero__title">Nome Cognome</h1>
+        <p class="hero__subtitle">
+          Breve bio in 2–3 righe: area di ricerca, metodi principali, applicazioni.
+          Esempio: modelli muscoloscheletrici, machine learning, neuroprotesi.
+        </p>
+
+        <div class="hero__chips" aria-label="Keywords">
+          <span class="chip">Biomechanics</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">Rehabilitation</span>
+          <span class="chip">Open Science</span>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn--primary" href="cv.pdf">Download CV</a>
+          <a class="btn" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </section>
+
+      <section class="section" id="publications">
+        <div class="section__header">
+          <h2 class="section__title">Pubblicazioni</h2>
+          <p class="section__hint">Selezione (aggiorna con DOI/venue)</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3 class="card__title">Titolo del paper 1</h3>
+            <p class="card__meta">Autori · Conferenza/Journal · 2025</p>
+            <p class="card__text">
+              1 riga di descrizione. Link:
+              <a class="link" href="#" target="_blank" rel="noreferrer">PDF</a> ·
+              <a class="link" href="#" target="_blank" rel="noreferrer">DOI</a> ·
+              <a class="link" href="#" target="_blank" rel="noreferrer">Code</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">Titolo del paper 2</h3>
+            <p class="card__meta">Autori · Conferenza/Journal · 2024</p>
+            <p class="card__text">
+              1 riga di descrizione. Link:
+              <a class="link" href="#" target="_blank" rel="noreferrer">PDF</a> ·
+              <a class="link" href="#" target="_blank" rel="noreferrer">DOI</a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="projects">
+        <div class="section__header">
+          <h2 class="section__title">Progetti</h2>
+          <p class="section__hint">Ricerca · software · dataset</p>
+        </div>
+
+        <div class="grid grid--2">
+          <article class="card">
+            <h3 class="card__title">Progetto A</h3>
+            <p class="card__meta">2025–oggi · Python/R · Open-source</p>
+            <p class="card__text">
+              Descrizione breve del progetto e del tuo contributo.
+              <a class="link" href="#" target="_blank" rel="noreferrer">Repo</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">Progetto B</h3>
+            <p class="card__meta">2024 · Dataset / Paper</p>
+            <p class="card__text">
+              Descrizione breve. <a class="link" href="#" target="_blank" rel="noreferrer">Dataset</a>
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="teaching">
+        <div class="section__header">
+          <h2 class="section__title">Didattica & Mentorship</h2>
+          <p class="section__hint">Corsi, tesi, supervisioni</p>
+        </div>
+
+        <div class="card">
+          <ul class="list">
+            <li><strong>Corso X</strong> — ruolo (TA / docente) · 2025</li>
+            <li><strong>Corso Y</strong> — laboratorio / esercitazioni · 2024</li>
+            <li><strong>Mentorship</strong> — 2 studenti MSc, 1 BSc · 2023–2025</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section__header">
+          <h2 class="section__title">Contatti</h2>
+          <p class="section__hint">Preferisci email e link professionali</p>
+        </div>
+
+        <div class="card">
+          <p class="card__text">
+            Email: <a class="link" href="mailto:nome.cognome@uni.it">nome.cognome@uni.it</a><br/>
+            Affiliazione: Dipartimento · Università · Città<br/>
+            <a class="link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a> ·
+            <a class="link" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Scholar</a> ·
+            <a class="link" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>© <span id="year"></span> Nome Cognome</div>
+        <div>Minimal nordic · GitHub Pages</div>
+      </footer>
+    </main>
   </div>
 
-  <header id="top" class="hero">
-    <div class="container">
-      <h1><!-- TODO -->Ciao, sono Il tuo Nome.</h1>
-      <p class="lead">
-        <!-- TODO -->
-        Una frase secca su cosa fai e per chi. Esempio: costruisco strumenti di data/ML e ricerca
-        per trasformare dati complessi in decisioni chiare.
-      </p>
-
-      <div class="row">
-        <!-- TODO: link reali -->
-        <a class="btn" href="https://github.com/TUOUSERNAME" target="_blank" rel="noreferrer">GitHub</a>
-        <a class="btn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="btn" href="cv.pdf" target="_blank" rel="noreferrer">CV</a>
-        <a class="btn" href="mailto:tuaemail@example.com">Email</a>
-      </div>
-
-      <div class="meta" style="margin-top:16px">
-        <span class="pill"><!-- TODO -->Ruolo</span>
-        <span class="pill"><!-- TODO -->Focus (ML / Biomech / …)</span>
-        <span class="pill"><!-- TODO -->Disponibilità (freelance / collab)</span>
-      </div>
-    </div>
-  </header>
-
-  <section id="about">
-    <div class="container">
-      <div class="section-title">
-        <h2>Chi sono</h2>
-        <p class="hint"><!-- TODO -->2–4 righe: background + cosa stai cercando/porti.</p>
-      </div>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Competenze</h3>
-          <p><!-- TODO -->Python, ML, simulazioni, visualizzazione, R/Shiny…</p>
-        </div>
-        <div class="card">
-          <h3>Interessi</h3>
-          <p><!-- TODO -->Biomeccanica, neuroprotesi, data products, open-source…</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <div class="container">
-      <div class="section-title">
-        <h2>Progetti</h2>
-        <p class="hint">Metti 2–4 progetti concreti con un risultato chiaro.</p>
-      </div>
-
-      <div class="grid">
-        <article class="card">
-          <div class="proj-head">
-            <h3><!-- TODO -->Progetto 1</h3>
-            <a href="#" target="_blank" rel="noreferrer">Repo →</a>
-          </div>
-          <p><!-- TODO -->Una riga: cosa fa + outcome (es. -30% tempo, +accuratezza, ecc.).</p>
-          <div class="chips">
-            <span class="chip">Python</span><span class="chip">ML</span><span class="chip">Open-source</span>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="proj-head">
-            <h3><!-- TODO -->Progetto 2</h3>
-            <a href="#" target="_blank" rel="noreferrer">Repo →</a>
-          </div>
-          <p><!-- TODO -->Una riga: problema → soluzione → risultato.</p>
-          <div class="chips">
-            <span class="chip">R</span><span class="chip">Dashboard</span><span class="chip">Viz</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <div class="section-title">
-        <h2>Contatti</h2>
-        <p class="hint">Il modo più rapido per raggiungermi.</p>
-      </div>
-
-      <div class="card">
-        <p style="margin:0; color:var(--muted)">
-          <!-- TODO -->
-          Email: <a href="mailto:tuaemail@example.com">tuaemail@example.com</a><br/>
-          GitHub: <a href="https://github.com/TUOUSERNAME" target="_blank" rel="noreferrer">TUOUSERNAME</a>
-        </p>
-        <div class="row" style="margin-top:12px">
-          <a class="btn primary" href="mailto:tuaemail@example.com">Scrivimi</a>
-          <a class="btn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="container">
-      © <span id="year"></span> <!-- TODO -->Il tuo Nome • <a href="#top">su</a>
-    </div>
-  </footer>
-
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
