@@ -6,7 +6,6 @@
   <meta name="description" content="Portfolio accademico – Nome Cognome" />
   <title>Nome Cognome · Academic Portfolio</title>
 
-  <!-- Font: pulito e leggibile (fallback safe) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -15,10 +14,10 @@
     :root{
       --bg: #f7f8fa;
       --card: #ffffff;
-      --text: #0f172a;        /* slate-900 */
-      --muted: #64748b;       /* slate-500 */
-      --line: #e5e7eb;        /* gray-200 */
-      --accent: #2563eb;      /* blue-600 */
+      --text: #0f172a;
+      --muted: #64748b;
+      --line: #e5e7eb;
+      --accent: #2563eb;
       --accent-weak: rgba(37, 99, 235, .10);
       --shadow: 0 10px 30px rgba(15, 23, 42, .06);
       --radius: 16px;
@@ -35,7 +34,6 @@
       line-height: 1.55;
     }
 
-    /* layout */
     .page{
       max-width: var(--maxw);
       margin: 0 auto;
@@ -47,7 +45,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 28px;
+      margin-bottom: 18px;
     }
 
     .brand{
@@ -56,24 +54,14 @@
       gap: 12px;
       text-decoration: none;
       color: inherit;
-    }
-
-    .avatar{
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, var(--accent-weak), rgba(100,116,139,.10));
-      border: 1px solid var(--line);
-      display: grid;
-      place-items: center;
-      font-weight: 600;
-      color: var(--accent);
+      min-width: 220px;
     }
 
     .nav{
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav__link{
@@ -90,25 +78,87 @@
       padding: 7px 9px;
     }
 
-    /* hero */
+    /* --- HERO con copertina --- */
     .hero{
-      background: rgba(255,255,255,.7);
       border: 1px solid var(--line);
       border-radius: var(--radius);
-      padding: 28px;
+      overflow: hidden;
+      background: rgba(255,255,255,.7);
       box-shadow: var(--shadow);
-      display: grid;
+    }
+
+    .hero__cover{
+      position: relative;
+      height: 210px;
+      background:
+        linear-gradient(135deg, rgba(37,99,235,.10), rgba(100,116,139,.12)),
+        radial-gradient(900px 260px at 10% 0%, rgba(255,255,255,.9), rgba(255,255,255,0));
+    }
+
+    .hero__cover img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.02);
+    }
+
+    /* piccolo overlay per testo leggibile se la cover è “forte” */
+    .hero__cover::after{
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(15,23,42,.00), rgba(15,23,42,.10));
+      pointer-events: none;
+    }
+
+    .hero__body{
+      padding: 18px 22px 22px;
+    }
+
+    .hero__header{
+      display: flex;
+      align-items: center;
       gap: 14px;
+      margin-top: -34px; /* fa “salire” la foto sul bordo cover */
+    }
+
+    .photo{
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      border: 3px solid rgba(255,255,255,.95);
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(15,23,42,.12);
+      overflow: hidden;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .hero__title{
-      font-size: clamp(28px, 4vw, 40px);
+      font-size: clamp(26px, 3.8vw, 38px);
       letter-spacing: -0.02em;
       margin: 0;
     }
 
+    .hero__role{
+      margin: 2px 0 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
     .hero__subtitle{
-      margin: 0;
+      margin: 12px 0 0 0;
       color: var(--muted);
       font-size: 16px;
       max-width: 72ch;
@@ -118,7 +168,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 4px;
+      margin-top: 12px;
     }
 
     .chip{
@@ -134,7 +184,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 6px;
+      margin-top: 14px;
     }
 
     .btn{
@@ -195,7 +245,6 @@
       grid-template-columns: 1fr;
       gap: 12px;
     }
-
     @media (min-width: 880px){
       .grid--2{ grid-template-columns: 1fr 1fr; }
     }
@@ -256,7 +305,6 @@
       flex-wrap: wrap;
     }
 
-    /* accessibility */
     :focus-visible{
       outline: 3px solid rgba(37,99,235,.35);
       outline-offset: 3px;
@@ -269,11 +317,7 @@
   <div class="page">
     <header class="topbar">
       <a class="brand" href="#">
-        <div class="avatar" aria-hidden="true">NC</div>
-        <div>
-          <div style="font-weight:600; font-size:14px;">Nome Cognome</div>
-          <div style="font-size:13px; color: var(--muted);">Researcher · University / Lab</div>
-        </div>
+        <div style="font-weight:600; font-size:14px;">Nome Cognome</div>
       </a>
 
       <nav class="nav" aria-label="Navigazione">
@@ -286,25 +330,43 @@
     </header>
 
     <main>
+      <!-- HERO con cover + foto -->
       <section class="hero" id="about">
-        <h1 class="hero__title">Nome Cognome</h1>
-        <p class="hero__subtitle">
-          Breve bio in 2–3 righe: area di ricerca, metodi principali, applicazioni.
-          Esempio: modelli muscoloscheletrici, machine learning, neuroprotesi.
-        </p>
-
-        <div class="hero__chips" aria-label="Keywords">
-          <span class="chip">Biomechanics</span>
-          <span class="chip">Machine Learning</span>
-          <span class="chip">Rehabilitation</span>
-          <span class="chip">Open Science</span>
+        <div class="hero__cover">
+          <!-- Copertina: metti la tua immagine in assets/cover.jpg -->
+          <img src="assets/cover.jpg" alt="Immagine di copertina" onerror="this.style.display='none'">
         </div>
 
-        <div class="actions">
-          <a class="btn btn--primary" href="cv.pdf">Download CV</a>
-          <a class="btn" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Google Scholar</a>
-          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <div class="hero__body">
+          <div class="hero__header">
+            <div class="photo" aria-label="Foto profilo">
+              <!-- Foto profilo: metti la tua immagine in assets/me.jpg -->
+              <img src="assets/me.jpg" alt="Foto di Nome Cognome" onerror="this.remove(); this.parentElement.textContent='NC';">
+            </div>
+
+            <div>
+              <h1 class="hero__title">Nome Cognome</h1>
+              <p class="hero__role">Researcher · University / Lab</p>
+            </div>
+          </div>
+
+          <p class="hero__subtitle">
+            Breve bio in 2–3 righe: area di ricerca, metodi principali, applicazioni.
+          </p>
+
+          <div class="hero__chips" aria-label="Keywords">
+            <span class="chip">Biomechanics</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Rehabilitation</span>
+            <span class="chip">Open Science</span>
+          </div>
+
+          <div class="actions">
+            <a class="btn btn--primary" href="cv.pdf">Download CV</a>
+            <a class="btn" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Google Scholar</a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+          </div>
         </div>
       </section>
 
